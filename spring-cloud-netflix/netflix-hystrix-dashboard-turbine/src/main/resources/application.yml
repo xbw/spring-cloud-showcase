@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: netflix-eureka-consumer
+server:
+  port: 9005
+eureka:
+  instance:
+    appname: netflix-eureka-consumer
+    hostname: 127.0.0.1
+  client:
+    service-url:
+        defaultZone: http://localhost:8761/eureka/
+feign:
+  hystrix:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "localhost"
+turbine:
+  app-config: netflix-eureka-consumer
+  aggregator:
+    cluster-config: default
+  cluster-name-expression: new String("default")
