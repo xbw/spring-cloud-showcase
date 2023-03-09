@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: netflix-eureka-client
+server:
+  port: 9000
+eureka:
+  instance:
+    appname: netflix-eureka-client
+    hostname: 127.0.0.1
+  client:
+    service-url:
+        defaultZone: http://localhost:8761/eureka/
