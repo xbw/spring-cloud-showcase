@@ -1,0 +1,12 @@
+server:
+  port: 8072
+spring:
+  application:
+    name: alibaba-nacos-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+nacos:
+  producer:
+    name: alibaba-nacos-producer
