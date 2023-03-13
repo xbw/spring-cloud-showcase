@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: netflix-zuul
+server:
+  port: 9020
+eureka:
+  instance:
+    appname: netflix-zuul
+    hostname: 127.0.0.1
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
