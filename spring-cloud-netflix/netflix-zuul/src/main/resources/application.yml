@@ -10,3 +10,11 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+zuul:
+  prefix: /api # Optional, /api/${serviceId}/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: routes # actuator/routes
