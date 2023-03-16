@@ -15,6 +15,20 @@ spring:
             - Path=/api/producer/**
           filters:
             - StripPrefix=2
+            - name: RequestRateLimiter
+              args:
+                # how many requests per second you want a user to be allowed to do, without any dropped requests. This is the rate at which the token bucket is filled.
+                redis-rate-limiter.replenishRate: 10
+                # the maximum number of requests a user is allowed to do in a single second. This is the number of tokens the token bucket can hold. Setting this value to zero blocks all requests.
+                redis-rate-limiter.burstCapacity: 20
+                # how many tokens a request costs. This is the number of tokens taken from the bucket for each request and defaults to 1.
+                redis-rate-limiter.requestedTokens: 20
+                key-resolver: "#{@customKeyResolver}"
+                #key-resolver: "#{@userKeyResolver}"
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+  redis: # for RequestRateLimiter, default none
+    host: localhost
+    password:
+    database: 0
