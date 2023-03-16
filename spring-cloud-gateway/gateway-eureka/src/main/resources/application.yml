@@ -35,6 +35,10 @@ spring:
                 exceptions: # default IOException and TimeoutException
                   - java.io.IOException
                   - java.util.concurrent.TimeoutException
+            - name: Hystrix
+              args:
+                name: producerCmd
+                fallbackUri: forward:/fallback/producer
   redis: # for RequestRateLimiter, default none
     host: localhost
     password:
@@ -46,3 +50,5 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+hystrix.command.producerCmd.execution.isolation.thread.timeoutInMilliseconds: 2000
