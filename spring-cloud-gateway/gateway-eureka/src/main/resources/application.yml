@@ -1,0 +1,24 @@
+server:
+  port: 9025
+spring:
+  application:
+    name: gateway-eureka
+  cloud: # https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/appendix.html
+    gateway:
+      default-filters:
+        - AddResponseHeader=author,xbw
+        - AddRequestParameter=token,${random.uuid}
+      routes:
+        - id: netflix-eureka-producer
+          uri: lb://netflix-eureka-producer
+          predicates:
+            - Path=/api/producer/**
+          filters:
+            - StripPrefix=2
+eureka:
+  instance:
+    appname: gateway-eureka
+    hostname: 127.0.0.1
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
