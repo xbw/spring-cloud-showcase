@@ -25,6 +25,16 @@ spring:
                 redis-rate-limiter.requestedTokens: 20
                 key-resolver: "#{@customKeyResolver}"
                 #key-resolver: "#{@userKeyResolver}"
+            - name: Retry
+              args:
+                retries: 3 # default 3
+                series: # default 5XX series
+                  - CLIENT_ERROR
+                  - SERVER_ERROR
+                methods: GET,POST # default GET
+                exceptions: # default IOException and TimeoutException
+                  - java.io.IOException
+                  - java.util.concurrent.TimeoutException
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
