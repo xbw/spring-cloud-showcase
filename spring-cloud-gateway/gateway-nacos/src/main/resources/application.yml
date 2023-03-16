@@ -35,6 +35,10 @@ spring:
                 exceptions: # default IOException and TimeoutException
                   - java.io.IOException
                   - java.util.concurrent.TimeoutException
+            - name: CircuitBreaker
+              args:
+                name: producerCircuitBreaker
+                fallbackUri: forward:/fallback/producer
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
