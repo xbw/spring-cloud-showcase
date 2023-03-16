@@ -39,6 +39,8 @@ spring:
               args:
                 name: producerCmd
                 fallbackUri: forward:/fallback/producer
+            - Pre
+            - Post
   redis: # for RequestRateLimiter, default none
     host: localhost
     password:
@@ -52,3 +54,6 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 hystrix.command.producerCmd.execution.isolation.thread.timeoutInMilliseconds: 2000
+logging:
+  level:
+    com.xbw.spring.cloud: debug

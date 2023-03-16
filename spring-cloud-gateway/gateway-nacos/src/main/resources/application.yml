@@ -39,6 +39,8 @@ spring:
               args:
                 name: producerCircuitBreaker
                 fallbackUri: forward:/fallback/producer
+            - Pre
+            - Post
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
@@ -46,3 +48,6 @@ spring:
     host: localhost
     password:
     database: 0
+logging:
+  level:
+    com.xbw.spring.cloud: debug

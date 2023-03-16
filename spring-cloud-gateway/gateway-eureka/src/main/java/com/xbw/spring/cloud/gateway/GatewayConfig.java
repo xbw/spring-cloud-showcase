@@ -1,5 +1,6 @@
 package com.xbw.spring.cloud.gateway;
 
+import com.xbw.spring.cloud.gateway.filter.CustomGatewayFilter;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
@@ -23,6 +24,7 @@ public class GatewayConfig {
                 .route("eureka",
                         r -> r.path("/api/eureka/**")
                                 .filters(f -> f.stripPrefix(2)
+                                        .filter(new CustomGatewayFilter())
                                         .addResponseHeader("pom", "spring-cloud-starter-netflix-eureka-client"))
                                 .uri("lb://netflix-eureka-producer"))
                 .build();

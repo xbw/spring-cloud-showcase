@@ -1,5 +1,6 @@
 package com.xbw.spring.cloud.gateway;
 
+import com.xbw.spring.cloud.gateway.filter.CustomGatewayFilter;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import io.github.resilience4j.timelimiter.TimeLimiterConfig;
 import org.springframework.cloud.circuitbreaker.resilience4j.ReactiveResilience4JCircuitBreakerFactory;
@@ -29,6 +30,7 @@ public class GatewayConfig {
                 .route("nacos",
                         r -> r.path("/api/nacos/**")
                                 .filters(f -> f.stripPrefix(2)
+                                        .filter(new CustomGatewayFilter())
                                         .addResponseHeader("pom", "spring-cloud-starter-alibaba-nacos-discovery"))
                                 .uri("lb://alibaba-nacos-producer"))
                 .build();
